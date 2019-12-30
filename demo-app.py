@@ -2,7 +2,7 @@
 from tkinter import *
 from tkinter import ttk
 import configparser
-import hashlib
+import hashlib, binascii
 from time import sleep
 
 # Globals, parsed from the config file
@@ -10,6 +10,7 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 USER = config['DEFAULT']['api-user']
 PASS = config['DEFAULT']['api-pass']
+SALT = 'A UNIQUE STRING FOR THIS APPLICATION'
 
 # Setting with default value if null
 LOGIN_MESSAGE = config['DEFAULT']['login-message'] or "Please log in"
@@ -84,7 +85,9 @@ def makeLoginWidget(parent):
 
     return ws
 
-def hash(s): return hashlib.sha256(s.encode()).hexdigest()
+def hash(s):
+    dk = hashlib.pbkdf2_hmac('sha256', s.encode(), SALT.encode(), 200000)
+    return binascii.hexlify(dk)
 
 def checkUser(s): return hash(s) == USER
 
