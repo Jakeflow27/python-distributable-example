@@ -16,7 +16,6 @@ SALT = 'A UNIQUE STRING FOR THIS APPLICATION'
 LOGIN_MESSAGE = config['DEFAULT']['login-message'] or "Please log in"
 SUCCESS_MESSAGE = config['DEFAULT']['success-message'] or "Logged in"
 
-
 def makeRootWidget():
     # Main window
     ws = Tk(className="Demo")
@@ -87,7 +86,7 @@ def makeLoginWidget(parent):
 
 def hash(s):
     dk = hashlib.pbkdf2_hmac('sha256', s.encode(), SALT.encode(), 200000)
-    return binascii.hexlify(dk)
+    return binascii.hexlify(dk).decode()
 
 def checkUser(s): return hash(s) == USER
 
@@ -96,8 +95,6 @@ def checkPass(s): return hash(s) == PASS
 def main():
     root = makeRootWidget()
     root.loginFrame = makeLoginWidget(root)
-    print(root)
     root.mainloop()
-
 
 main()
