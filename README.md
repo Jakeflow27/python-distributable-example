@@ -11,9 +11,8 @@ This application uses a cryptographic hash to store the "sensitive" information 
 
 ## Setup dev environment
 
-1. [Install python > 3.1](https://google.com/search?q=install+python+3)
-2. [Install pip](https://google.com/search?q=install+pip)
-3. Install pyinstaller by running `pip install pyinstaller`
+1. [Install python 3.7](https://google.com/search?q=install+python+3.7)
+2. Install pyinstaller by running `pip install pyinstaller`
 
 ## Running
 
@@ -24,7 +23,7 @@ This application uses a cryptographic hash to store the "sensitive" information 
 
 Building the application puts a distributable binary in the `/dist` folder for the operating system on which it was built. The `config.ini` file is copied to the dist folder by `build.bat`
 
-- run `build.bat` to build on windows
+- run `./build.bat` to build on windows
 - [Pyinstaller docs](https://pyinstaller.readthedocs.io/en/stable/usage.html)
 
 ## Screenshots
